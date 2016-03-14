@@ -1,0 +1,148 @@
+---
+title: "StanEcon TOC"
+author: "Jim Savage"
+date: "13 March 2016"
+output: pdf_document
+---
+
+Second thoughts on basic structure. Feel free to send through a pull request with any thoughts or comments.
+
+1. An introduction to Generative models
+
+This chapter is really a punch line. It has two main points. The first is to sell junior-ish econometricians on the Bayesian paradigm and Stan. Tell them that it will be far easier for them to estimate rich models and make fewer mistakes if they read the book. Give them a couple of examples where using Stan will make their lives a lot easier. The second point is to really re-enforce the "Bayesian Workflow" which I have found extremely useful.
+
+- **Why generative models?**
+- **The Bayesian Workflow**
+  - Writing out a probability model
+  - Simulating the model with known parameters
+  - Estimating the model to recover known parameters
+  - Model inspection
+  - Model comparison
+  - Iteration
+  - Inference and prediction
+- **Tools of the trade**
+  - Some useful distributions
+  - Likelihood
+  - Covariance matrices
+  - A couple of handy results from matrix algebra
+
+2. How much additional income does one earn because of their level of education? 
+
+This is a chapter on causality. I have a preference to use causal graphs throughout, to really make explicit the structure of these sorts of models (and illustrate concepts like observed vs unobserved confounding variables, instruments and bad controls graphically). 
+
+The structure for all models being discussed is to work through the entire Bayesian Workflow presented in Chapter 1. So we write out the DGP, simulate, estimate, check, compare, infer, for every model. 
+
+- **Causal vs predictive models**
+  - The Rubin causal framework
+  - The experimental ideal
+  - Why don't black-box predictive models work for causal research? 
+- **Regression with controls**
+  - Observed and unobserved confounders
+  - Bad controls
+- **Instrumental variables**
+  - The exclusion restriction
+  - Instrumental variables in action
+- **Selection**
+  - Discussion of selection bias
+  - The Heckman correction
+- **Regression discontinuity design**
+  - Discrete cut-off model
+  - Fuzzy cut-off
+- **Panel data: a Bayesian approach to individual fixed effects**
+  - The frequentist fixed-effects estimator
+  - The generative approach
+- **Matching estimators**
+  - Propensity score adjustment
+  - Bayesian propensity score matching
+
+3. How do consumers respond to an increase in the price of breakfast cereal?
+
+This is the discrete choice chapter. Most New Empirical Industrial Organization folk use these sorts of models combined with quite interesting instrumental variables to address potential bias between our endogenous regressor (price) and sales. 
+
+- **The linear demand model**
+  - The problem with the endogeneity of price
+  - Using instrumental variables
+  - Commonly used instrumental variables
+  - Dealing with cross-price elasticities and the curse of dimensionality
+- **Logit demand**
+  - An introduction to the product characteristic space
+  - Latent utility
+  - Introducing instrumental variables
+  - Red busses and blue busses. 
+- **Nested logit demand**
+  - Introducing substitutability between groups of products
+  - Using instrumental variables
+  - The problem of introducing new products
+- **Random coefficients logit**
+  - Individually-varying intercepts
+  - Incorporating demographics
+  - Difference between GMM approach and Bayesian approach: distributional assumption for latent demand shocks
+  - Consequences of different distributional assumptions for latent demand. 
+
+
+4. What is the impact of monetary policy on inflation?
+
+The point of this chapter is to introduce and contrast two quite different approaches to time-series (causal) econometrics: the reduced-form approach and the structuralist approach. We will start off by describing the common reduced-form techniques used by times-series modelers. We then talk a bit about the Lucas Critique and why it may invalidate policy choices that would arise from using reduced-form models. Next, we introduce a bargain-basement stripped-down version of a New Keynesian DSGE model, which we estimate using a Structural Vector Error Correction model. Finally we introduce time-varying parameter models and low-to-high frequency interpolation. 
+
+**Commonly-used reduced-form models for time series**
+
+- **A basic autoregressive model of inflation**
+  - Some basic time-series concepts: the autocorrelation function
+  - Lag selection
+  - Forecasting with an AR(P) model
+- **Autoregressive Distributed Lag (ARDL) models & impulse responses**
+  - Introducting an explanatory variable
+  - Selecting lags
+  - Inverting the ARDL model
+  - Impulse response function
+- **Cointegration and the error correction model**
+  - Some basic time-series concept 2: The unit root
+  - Discussion: does a unit root mean anything in Bayesian statistics? 
+  - Discussion: Prior choice in the presence of a possible unit root. 
+  - The error correction model
+  - Short term and long term impulse responses
+- **Vector autoregressions (VAR) and Vector Error Correction Models (VECM)**
+  - Introduction to VAR
+  - Using the companion form in Stan
+  - Modeling covariance
+
+**A discussion of the Lucas Critique**
+
+- **A basic New Keynesian DSGE model**
+  - Log linearising the model
+  - Calibrating non-estimated parameters
+- **Structural vector autoregressions (SVAR)**
+  - Estimating the DSGE model in Stan
+  - Simulating a policy response in Stan
+- **State-space models and time varying parameters**
+  - An introduction to state-space models
+  - Estimating the state directly in Stan
+  - A warning: Stan data from after t in estimating t's state
+  - An introduction to the Kalman Filter
+  - Implementing the Kalman Filter in Stan. 
+  - Discussion: keeping it stationary
+- **Low to high frequency interpolation using state space models**
+  - Simple LHF interpolation using state space model
+  - Introducing the adding-up constraint
+
+5. Portfolio risk management in an uncertain environment
+
+This chapter is really the first chapter to deal exclusively with predictive models. We're not at all interested in any causal inference---just out of sample prediction of higher moments of a multivariate distribution. 
+
+- **An introduction to stochastic volatility: ARCH and GARCH**
+  - Observation: volatility clustering
+  - Application to currency markets
+  - Application to inflation 
+  - Estimating a simple ARCH model in Stan
+  - Introduction to GARCH, and fitting a GARCH model in Stan. 
+  - GARCH in mean modeling
+- **Multivariate GARCH models**
+  - Modeling the covariance matrix of a VAR
+  - Decomposing covariance
+  - The CCC GARCH model
+  - The DCC GARCH "model"
+- **Asset pricing with GARCH models**
+  - Constructing portfolio weights from multivariate portfolio volitility forecasts
+  - Introduction to option pricing using forecasts. 
+
+
